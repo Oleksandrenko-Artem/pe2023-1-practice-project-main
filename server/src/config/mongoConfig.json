@@ -1,11 +1,11 @@
 {
   "development": {
-    "database": "shm-chat",
+    "database": "squadhelp-chat_dev",
     "host": "localhost",
     "port": 27017
   },
   "production": {
-    "database": "shm-chat",
+    "database": "shm-chat_prod",
     "host": "localhost",
     "port": 27017
   }
