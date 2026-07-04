@@ -32,12 +32,6 @@ contestsRouter.post(
   contestController.dataForContest,
 );
 
-contestsRouter.post(
-  '/getCustomersContests',
-  checkToken.checkToken,
-  contestController.getCustomersContests,
-);
-
 contestsRouter.get(
   '/getContestById',
   checkToken.checkToken,
