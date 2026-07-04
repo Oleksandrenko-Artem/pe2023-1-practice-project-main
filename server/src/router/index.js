@@ -7,7 +7,10 @@ const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const upload = require('../utils/fileUpload');
+const contestsRouter = require('./contestsRouter');
 const router = express.Router();
+
+// auth
 
 router.post(
   '/registration',
@@ -18,40 +21,42 @@ router.post(
 
 router.post('/login', validators.validateLogin, userController.login);
 
-router.post(
+// contests
+
+router.use('/contests', contestsRouter);
+
+
+contestsRouter.post(
   '/dataForContest',
   checkToken.checkToken,
   contestController.dataForContest,
 );
 
-router.post(
-  '/pay',
-  checkToken.checkToken,
-  basicMiddlewares.onlyForCustomer,
-  upload.uploadContestFiles,
-  basicMiddlewares.parseBody,
-  validators.validateContestCreation,
-  userController.payment,
-);
-
-router.post(
+contestsRouter.post(
   '/getCustomersContests',
   checkToken.checkToken,
   contestController.getCustomersContests,
 );
 
-router.get(
+contestsRouter.get(
   '/getContestById',
   checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById,
 );
 
-router.post(
+contestsRouter.post(
   '/getAllContests',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
   contestController.getContests,
+);
+
+contestsRouter.post(
+  '/updateContest',
+  checkToken.checkToken,
+  upload.updateContestFile,
+  contestController.updateContest,
 );
 
 router.post('/getUser', checkToken.checkAuth);
@@ -60,13 +65,6 @@ router.get(
   '/downloadFile/:fileName',
   checkToken.checkToken,
   contestController.downloadFile,
-);
-
-router.post(
-  '/updateContest',
-  checkToken.checkToken,
-  upload.updateContestFile,
-  contestController.updateContest,
 );
 
 router.post(
