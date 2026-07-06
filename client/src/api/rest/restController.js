@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import http from '../interceptor';
 
 export const registerRequest = data => http.post('registration', data);
@@ -27,7 +28,7 @@ export const removeChatFromCatalog = data =>
 export const changeCatalogName = data => http.post('updateNameCatalog', data);
 export const getCustomersContests = data =>
   http.get(
-    `contests/byCustomer?limit=${data.limit}&offset=${data.offset}&status=${data.contestStatus}`,
+    `contests/byCustomer?${queryString.stringify(data)}`,
   );
 
 export const getActiveContests = ({
