@@ -2,7 +2,6 @@ const express = require('express');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
-const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const upload = require('../utils/fileUpload');
 const contestsRouter = express.Router();
@@ -10,7 +9,6 @@ const contestsRouter = express.Router();
 // POST /contests
 contestsRouter.post(
   '/',
-  checkToken.checkToken,
   basicMiddlewares.onlyForCustomer,
   upload.uploadContestFiles,
   basicMiddlewares.parseBody,
@@ -21,14 +19,12 @@ contestsRouter.post(
 // GET /contests/byCustomer
 contestsRouter.get(
   '/byCustomer',
-  checkToken.checkToken,
   contestController.getCustomersContests,
 );
 
 // GET /contests/:id
 contestsRouter.get(
   '/:contestId',
-  checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById,
 );

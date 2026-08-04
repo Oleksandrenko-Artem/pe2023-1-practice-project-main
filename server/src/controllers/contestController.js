@@ -311,3 +311,13 @@ module.exports.getContests = (req, res, next) => {
       next(new ServerError());
     });
 };
+
+module.exports.getAllOffers = async (req, res, next) => {
+  const { limit = 8, offset = 0 } = req.query;
+  try {
+    const foundOffers = db.Offers.findAll({ limit, offset }, { raw: true });
+    res.status(200).send(foundOffers);
+  } catch (err) {
+    next(new ServerError());
+  }
+};
