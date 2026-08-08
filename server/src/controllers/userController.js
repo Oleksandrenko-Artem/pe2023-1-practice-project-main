@@ -65,7 +65,7 @@ module.exports.registration = async (req, res, next) => {
   }
 };
 
-function getQuery (offerId, userId, mark, isFirst, transaction) {
+function getQuery(offerId, userId, mark, isFirst, transaction) {
   const getCreateQuery = () =>
     ratingQueries.createRating(
       {
@@ -157,7 +157,11 @@ module.exports.payment = async (req, res, next) => {
         prize,
       });
     });
-    await bd.Contests.bulkCreate(req.body.contests, transaction);
+    await bd.Contests.bulkCreate(req.body.contests, { transaction });
+
+    const newTransaction = { operationType: 'EXPENCE', userId: req.tokenData.userId, summ: req.body.price };
+
+    await bd.Transactions.create(newTransaction, { transaction });
     transaction.commit();
     res.send();
   } catch (err) {
@@ -219,6 +223,10 @@ module.exports.cashout = async (req, res, next) => {
       },
       transaction,
     );
+
+    const newTransaction = { operationType: 'INCOME', userId: req.tokenData.userId, summ: req.body.sum };
+
+    await bd.Transactions.create(newTransaction, { transaction });
     transaction.commit();
     res.send({ balance: updatedUser.balance });
   } catch (err) {
