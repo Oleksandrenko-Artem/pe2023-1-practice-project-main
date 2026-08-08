@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       summ: {
         type: DataTypes.DECIMAL,
         validate: {
-          gt: 0,
+          min: 0,
         },
       },
     },
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Transaction.associate = function (models) {
     Transaction.belongsTo(models.Users, {
-      foreingKey: { name: 'userId', allowNull: false },
+      foreignKey: { name: 'userId', allowNull: false },
     });
   };
 
