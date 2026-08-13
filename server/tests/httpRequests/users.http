@@ -1,0 +1,2 @@
+GET http://localhost:5000/users/id/transactions/limit=10&offset=4 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjhiZmFkMGEyOGY3N2E1OGFhYmVlNCIsImlhdCI6MTc4NTg0MDYyNCwiZXhwIjoxNzg2NDQ1NDI0fQ.qb1zxvOPP-OtrIX2G4arLErKd2j4HEQ8XCTwiiYMo2s

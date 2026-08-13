@@ -33,6 +33,7 @@ router.use(checkToken.checkToken);
 
 router.use('/contests', contestsRouter);
 
+router.get('/users/:id/transactions', userController.getUserTransactions);
 
 contestsRouter.post(
   '/dataForContest',
