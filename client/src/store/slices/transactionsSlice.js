@@ -1,4 +1,4 @@
-import { createAsyncChunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as restController from "./../../api/rest/restController";
 
 const TRANSACTIONS_SLICE_NAME = 'transactions';
@@ -9,7 +9,7 @@ const initialState = {
     error: null,
 };
 
-export const getTransactions = createAsyncChunk(`${TRANSACTIONS_SLICE_NAME}/get`, async (payload, {rejectWithValue}) => {
+export const getTransactions = createAsyncThunk(`${TRANSACTIONS_SLICE_NAME}/get`, async (payload, {rejectWithValue}) => {
     try {
         const { data } = await restController.getTransactions();
         return data;
