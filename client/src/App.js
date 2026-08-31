@@ -20,6 +20,7 @@ import browserHistory from './browserHistory';
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
 import PricingPage from './pages/PricingPage/PricingPage';
 import TransactionsPage from './pages/TransactionsPage/TransactionsPage';
+import HowItWorks from './pages/HowItWorks/HowItWorks';
 
 class App extends Component {
   render () {
@@ -39,6 +40,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/pricing' component={PricingPage} />
+          <Route path='/how-it-works' component={HowItWorks} />
           <Route
             exact
             path='/login'
