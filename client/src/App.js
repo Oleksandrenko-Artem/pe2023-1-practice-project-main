@@ -21,9 +21,10 @@ import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatCo
 import PricingPage from './pages/PricingPage/PricingPage';
 import TransactionsPage from './pages/TransactionsPage/TransactionsPage';
 import HowItWorks from './pages/HowItWorks/HowItWorks';
+import EventsPage from './pages/Events/Events';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <Router history={browserHistory}>
         <ToastContainer
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/pricing' component={PricingPage} />
           <Route path='/how-it-works' component={HowItWorks} />
+          <Route path='/events' component={EventsPage} />
           <Route
             exact
             path='/login'
